@@ -1,0 +1,38 @@
+<div style="padding: 3px;">
+    <h4>{{ ques.description }}</h4>
+    <div style="display: flex; justify-content: flex-end;">
+      <h5>
+        <span
+          ><mdb-badge success="true">{{ ques.difficulty }}</mdb-badge>
+          &nbsp;&nbsp;&nbsp;</span
+        >
+        <span
+          ><mdb-badge primary="true">{{ ques.type }}</mdb-badge>
+          &nbsp;&nbsp;&nbsp;</span
+        >
+        <span>
+          <mdb-badge default="true">{{ ques.category }}</mdb-badge>
+          &nbsp;&nbsp;&nbsp;</span
+        >
+      </h5>
+    </div>
+
+    <div *ngIf="ques.type === 'multiple'">
+      <ul *ngFor="let option of ques.options">
+        <li>{{ option }}</li>
+      </ul>
+    </div>
+    <div *ngIf="ques.type !== 'multiple'" class="text-area">
+      <textarea
+        type="text"
+        id="text-area"
+        class="md-textarea form-control"
+        rows="2"
+        mdbInput
+      ></textarea>
+    </div>
+
+    
+       
+
+</div>

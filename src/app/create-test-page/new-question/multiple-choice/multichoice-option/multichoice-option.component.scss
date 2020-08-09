@@ -1,0 +1,20 @@
+.multiple-choice{
+    float: left;
+    padding-right:1% ;
+}
+.editor{
+    float: left;
+    width: 90%;
+
+}
+.closebutton{
+    margin-left: 1%;
+    margin-top: -0.5%;
+    float: right;
+}
+.row div .closebutton{
+    display: none;
+}
+.row div:hover .closebutton{
+    display: block;
+}

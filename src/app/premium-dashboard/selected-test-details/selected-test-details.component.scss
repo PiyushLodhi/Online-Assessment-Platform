@@ -1,0 +1,41 @@
+@media (max-width: 575.98px) { 
+    .heading-text{
+        font-size: 12px;
+    }
+ }
+ @media (max-width: 767.98px) { 
+    .heading-text{
+    font-size: 16px;
+} }
+@media (max-width: 991.98px) { 
+    .heading-text{
+        font-size: 20px;
+    }
+ }
+ @media (max-width: 1199.98px) { 
+    .heading-text{
+        font-size: 24px;
+    }
+ }
+
+ .circle {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    zoom: 1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+.circle i {
+    color:  royalblue;
+    font-size: 2.0em;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border: none;
+    top: 22px;
+}

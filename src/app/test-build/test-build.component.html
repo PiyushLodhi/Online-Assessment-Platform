@@ -1,0 +1,55 @@
+<div class="container-fluid" style="padding: 0px;">
+  <div class="row" style="display: flex; justify-content: center;">
+    <div class="col-md-8">
+      <ul class="stepper stepper-horizontal">
+        <li [ngClass]="{active: step===1}" >
+          <a (click)="step = 1">
+            <span class="circle">1</span>
+            <span class="label">Test Details</span>
+          </a>
+        </li>
+
+        <li [ngClass]="{active: step===2}"  >
+          <a (click)="step = 2">
+            <span class="circle">2</span>
+            <span class="label">Select Questions</span>
+          </a>
+        </li>
+
+        <li [ngClass]="{active: step===3}"  >
+          <a (click)="step = 3">
+            <span class="circle">
+              3
+            </span>
+            <span class="label">Submit </span>
+          </a>
+        </li>
+      </ul>
+      <!-- /.Stepers Wrapper -->
+    </div>
+  </div>
+  <!-- /.Horizontal Steppers -->
+
+  <div *ngIf="step === 1">
+    <app-test-build-form></app-test-build-form>
+  </div>
+
+  <div *ngIf="step === 2" class="row">
+    <div class="col-lg-2 text-white">
+      <app-dashboard [topics]="topics"></app-dashboard>
+    </div>
+    <div class="col-lg-9">
+      <app-select-ques
+        [topics]="topics"
+        [difficultyList]="difficultyList"
+        [typeList]="typeList"
+      ></app-select-ques>
+    </div>
+  </div>
+
+  <div *ngIf="step === 3" class="row" style="justify-content: center;">
+    <div class="col-md-11">
+      <app-question-cart></app-question-cart>
+    </div>
+  </div>
+</div>

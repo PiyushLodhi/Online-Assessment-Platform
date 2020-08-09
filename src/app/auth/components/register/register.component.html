@@ -1,0 +1,161 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal mb-4" [containerInside]="false" >
+
+  <!-- Navbar brand -->
+  
+    <a class="navbar-brand">    
+      <img src="https://api.startupindia.gov.in/sih/api/file/user/image/Startup?fileName=04c4437c-4b51-4ece-ace2-0bb679fdcef2.png" height="35" alt="">
+      NykAssessment
+    </a>
+    <button class="navbar-toggler navbar-toggler-right"  type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()" ><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/home']">Home</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/about']">About</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
+        <li class="nav-item"><a class="nav-link " [routerLink]="['/login']" ><i class="fa fa-key" aria-hidden="true"></i> Login</a></li>
+      </ul>
+    </div>
+ 
+</mdb-navbar>
+<!--/.Navbar-->
+<div class="container-fluid " >
+<div class="row wow fadeIn align-items-center">
+    <div class="col-md-6 text-center ">
+ 
+             <img src="../../../../assets/images/nykinskylogo.png"  class =" img-fluid img-log" alt="">
+             <h1 class="head" style="font-family: 'Pangolin', cursive !important;">Nykinsky Assessment Portal</h1>
+             <p style="font-family: 'Sacramento', cursive !important;font-size:30px;">Lorem ipsum dolor,  consectetur adipisicing elit. Sapiente animi</p>
+             <p style="font-family: 'Sacramento', cursive !important;font-size:30px;">sunt nostrum voluptats.</p>
+             
+        </div>
+        <div class="col-md-6 col-xl-5 mb-4 text-center">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card content-->
+              <div class="card-body">
+        <div class="g">
+         <!-- Default form register -->
+    <form  (ngSubmit)="onSubmit(registerform)" [formGroup]="registerform" >
+
+        <p class="h4 mb-4">Sign up</p>
+  
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- First name -->
+            <input type="text"  class="form-control" placeholder="Username"   formControlName="firstName" [ngClass]="{'is-invalid':
+          registerform.get('firstName').touched && registerform.get('firstName').invalid}">
+          <div class="invalid-feedback"><p>Enter Username</p></div>
+          </div>
+          <div class="col">
+            <!-- Last name -->
+            <input type="text"  class="form-control" placeholder="Organisation" formControlName="organisation" [ngClass]="{'is-invalid':
+            registerform.get('organisation').touched && registerform.get('organisation').invalid}">
+            <div class="invalid-feedback"><p>Enter Organisation</p></div>
+          </div>
+        </div>
+        <div class="form-group">
+    
+            <select class="form-control" formControlName="position" [ngClass]="{'is-invalid':
+            registerform.get('position').touched && registerform.get('position').invalid}">
+              <option select disabled>Select your  role</option>
+              <option *ngFor="let role of Role" [ngValue]="role">{{role}}</option>
+            </select>
+            <div class="invalid-feedback"><p>Enter your role</p></div>
+        
+        </div>
+        
+        
+        <!-- E-mail -->
+        <input type="email"  class="form-control mb-4" placeholder="E-mail" formControlName="emailid" (change)="emailcheck($event)" [ngClass]="{'is-invalid':
+        registerform.get('emailid').touched && registerform.get('emailid').invalid || emailnotofficial || emailexist}">
+        <div class="invalid-feedback"><p *ngIf="!emailexist">Enter official email</p>
+          <p *ngIf="emailexist">Email already registered</p>
+        </div>
+        <!-- Password -->
+
+        <div class="form-row mb-4">  
+            <div class="col">
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="password" [ngClass]="{'is-invalid':
+            registerform.get('password').touched && registerform.get('password').invalid}">
+            <div class="invalid-feedback"><p>Min password length should be 8 <br/>
+            It should  contain one upper case letter <br/>
+            It should  contain one upper case letter
+          </p></div>
+        </div>
+        <div class="col">
+            <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="confirmPassword" [ngClass]="{'is-invalid':
+            registerform.get('confirmPassword').touched && registerform.get('confirmPassword').invalid || (registerform.get('confirmPassword').touched && registerform.get('confirmPassword').errors && 
+            registerform.get('confirmPassword').errors.ConfirmPassword) }">
+            <div class="invalid-feedback" ><p>Confirm password should match</p></div>
+
+        </div>
+    </div>      
+ 
+       
+        <!-- Phone number -->
+        <div class="form-group">
+        <input type="text"  class="form-control" placeholder="Phone number"  maxlength='10' formControlName="phonenumber" [ngClass]="{'is-invalid':
+        registerform.get('phonenumber').touched && registerform.get('phonenumber').invalid}">
+        <div class="invalid-feedback" ><p>Enter valid phone Number</p></div>
+        <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+          Optional - for two-step authentication
+        </small>
+      </div>
+
+        
+ 
+<div class="form-row mb-4 ">  
+        <re-captcha (resolved)="resolved($event)" siteKey="{{key}}"  style="margin: 0 auto;"></re-captcha>
+        </div>
+
+
+        <!-- Sign up button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="!registerform.valid || !captchaverified" >Sign up</button>
+  
+        <!-- Social register -->
+        
+  
+        <hr>
+  
+        <!-- Terms of service -->
+        <p>By clicking
+          <em>Sign up</em> you agree to our
+          <a href="" target="_blank">terms of service</a></p>
+  
+      </form>
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            Already have an account? <a [routerLink]="['/login']" class="ml-2">Sign In</a>
+        </div>
+      <!-- Default form register -->        
+        </div>
+    </div>
+            </div>
+            </div>
+
+</div>
+
+
+
+<!--footer starts-->
+  
+<!-- Footer -->
+<footer class="page-footer font-small teal" style="width:100%;">
+
+  <!-- Copyright -->
+  <div class="container-fluid" style="width:100%;">
+  <div class="footer-copyright text-center py-3 " style="width:100%;">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/" > Nykinsky</a>
+  </div>
+  <!-- Copyright -->
+</div>
+</footer>
+<!-- Footer -->
+
+
+<router-outlet></router-outlet>
+
+</div>

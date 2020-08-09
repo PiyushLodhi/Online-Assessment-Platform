@@ -1,0 +1,36 @@
+@media all and (min-width: 768px) {
+  tr  {
+    td {
+      vertical-align: middle !important;
+    }
+    span {
+      &:not([class]) {
+        padding: 1rem 1rem;
+      }
+    }
+  }
+}
+
+
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+  display: flex;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  height: 70px;
+  text-align: center;
+  justify-content: center;
+  border: 4px dashed #1FB264;
+  position: relative;
+}
+

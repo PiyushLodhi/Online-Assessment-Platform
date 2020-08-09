@@ -1,0 +1,73 @@
+/* Test Card*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    //padding-top: 1%;
+    //width: 260px;
+    border-radius: 5px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  img {
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+
+  /* Test Card */
+
+.view {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.top-nav-collapse {
+    background-color: #4285f4;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #4285f4;
+    }
+}
+
+.toggel-category {
+    list-style: none;
+}
+.toggel-category:hover{
+    border-radius: 1px solid black;
+    border-radius: 4px;
+    background-color: #eee;
+    padding-left: 2%;
+    margin-left: -2%;
+}
+
+@media (max-width: 600px) {
+    #tests-view-panel.container {
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    #tests-view-panel.container {
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    #tests-view-panel.container {
+        padding-top: 80px;
+    }
+}
+
+

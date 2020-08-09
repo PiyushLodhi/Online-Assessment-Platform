@@ -1,0 +1,108 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+  <!-- Navbar brand image-->
+  <mdb-navbar-brand>
+    <a class="navbar-brand" >
+      <img src="https://api.startupindia.gov.in/sih/api/file/user/image/Startup?fileName=04c4437c-4b51-4ece-ace2-0bb679fdcef2.png" height="35" alt="">
+    </a>
+  </mdb-navbar-brand>
+  <p class="navbar-text" style="color:rgb(243, 243, 243)">We are about to start the test. Fill the Form First!
+  <br>  <small> * denotes mandatory field </small> </p>
+</mdb-navbar>
+ 
+<div class = "container-fluid">
+  <br>
+  <div class="alert alert-danger" *ngIf="emailCheckError" role="alert">
+    Registration Failed! Fill authorized Email ID or contact for technical support.
+  </div>
+  <div class="row">
+    <div class = "col-md-6">
+    <!-- Material Candidate form -->
+    <mdb-card >
+      <!--Card content-->
+      <mdb-card-body class="px-lg-5 pt-3">
+        <!-- Form -->
+        <form  style="color: #696767;" #candidateForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Name -->
+          <div class= "row">
+            <!--First Name -->
+            <div class= "col">  
+              <div class="md-form mt-3">
+                <input type="text" id="FirstName" class="form-control" mdbInput ngModel name = "FirstName" #FirstName="ngModel" required [class.is-invalid]="FirstName.invalid && FirstName.touched" [(ngModel)]="candidate.FirstName">
+                <label for="FirstName">First Name <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+                <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">First Name is required</small>
+              </div>
+            </div>
+            <!--Last Name -->
+            <div class= "col">  
+              <div class="md-form mt-3">
+                <input type="text" id="LastName"  class="form-control" mdbInput ngModel name = "LastName" #LastName="ngModel" required [class.is-invalid]="LastName.invalid && LastName.touched" [(ngModel)]="candidate.LastName">
+                <label for="LastName">Last Name <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+                <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">Last Name is required</small>
+              </div>
+            </div>
+          </div>
+
+          <div class = "row ">
+            <!-- E-mail -->
+            <div class="col"> 
+              <div class="md-form mt-0">
+                <input type="email" id="Email"  class="form-control" mdbInput ngModel name = "Email" [(ngModel)]="candidate.Email" #Email ="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required [class.is-invalid]="Email.invalid && Email.touched" [(ngModel)]="candidate.Email">
+                <label for="Email">E-mail ID <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+                <small class="text-danger" [class.d-none]="Email.valid || Email.untouched">Email is required</small>
+                <p><small class="text-danger" *ngIf="Email.errors?.pattern">This is not a valid Email!</small></p>
+              </div>
+            </div>
+            <!-- Contact no. -->
+            <div class="col">
+              <div class="md-form mt-0">
+                <input type="text" id="Contact" class="form-control" mdbInput ngModel name = "Contact" #Contact ="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$"  required [class.is-invalid]="Contact.invalid && Contact.touched" [(ngModel)]="candidate.Contact"> 
+                <label for="Contact">Contact no. <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+                <small class="text-danger" [class.d-none]="Contact.valid || Contact.untouched">Contact no. is required</small>
+                <p><small class="text-danger" *ngIf="Contact.errors?.pattern">This is not a valid Contact No.!</small></p>
+              </div>  
+            </div>
+          </div>
+          <!-- Gender -->
+          <label for="Gender" class="small text-muted">Gender <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+          <select class="browser-default custom-select mb-4" style = " width: 50%;" class="form-control" ngModel name = "Gender"   #Gender="ngModel" required [class.is-invalid]="Gender.invalid && Gender.touched"  [(ngModel)]="candidate.Gender" Placeholder = "Gender" >
+            <option value="" disabled>Gender <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Transgender">Transgender</option>
+          </select>
+          <small class="text-danger" [class.d-none]="Gender.valid || Gender.untouched">Gender is required</small>
+          <br>
+          <!-- DOB -->
+          <div class="md-form">
+            <input type="date" id="Date" class="form-control" style = " width: 50%;" mdbInput ngModel name = "Date" #Date ="ngModel" required [class.is-invalid]="Date.invalid && Date.touched" [(ngModel)]="candidate.Date">
+            <label for="Date" >Date of Birth <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+            <small class="text-danger" [class.d-none]="Date.valid || Date.untouched">Date of Birth is required</small>
+          </div>
+          <!-- Country -->
+          <div class="md-form mt-0">
+            <input type="text" id="Country" style = " width: 50%;" class="form-control" mdbInput ngModel name = "Country" #Country ="ngModel" required [class.is-invalid]="Country.invalid && Country.touched" [(ngModel)]="candidate.Country">
+            <label for="Country">Country <span style="color:rgb(235, 80, 80)"><sup>*</sup></span> </label>
+            <small class="text-danger" [class.d-none]="Country.valid || Country.untouched">Country is required</small>
+          </div>
+          <!-- Submit button -->
+          <button mdbBtn color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect"
+            mdbWavesEffect [disabled]="candidateForm.form.invalid" type="submit">Move to Test Instructions</button>
+        </form>
+        <!-- Form -->
+
+      </mdb-card-body>
+    </mdb-card>
+    <!-- Material Candidate form  -->
+    </div>
+    <div class = "col-md-6  d-flex justify-content-center">
+      <img class="img-responsive" src="../../assets/images/Steps123.png" >
+    </div>
+    
+  </div>
+</div>
+<br>
+<footer class="bg-light py-4">
+  <div class="container justify-content-center"><div class="small text-center text-muted">Copyright © 2020 - NyKinSky | Technical Support - XXXXXXXXXX
+  </div></div>
+</footer>

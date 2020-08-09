@@ -1,0 +1,317 @@
+<div class="breadcrumb" style="height: 12%;">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a style="color:#007bff;" (click)="goToTests()">Tests</a></li>
+    <li class="breadcrumb-item active" aria-current="page">ViewTest</li>
+  </ol>
+
+  <div id="filterTopic">
+    <!--Model To Add Topic Questions-->
+    <!--#####################################################-->
+
+    <div mdbModal #addTopicframe="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+          <form (ngSubmit)="addTopic(addTopicForm,addTopicframe)" [formGroup]="addTopicForm">
+            <!--Header-->
+            <div class="modal-header d-flex  justify-content-center">
+              <p class="heading">New Test Topic</p>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <!--Topic Name -->
+              <div class="form-group">
+                <input type="text" formControlName="newTopic" class="form-control mt-4" placeholder="Topic"
+                  [ngClass]="{'is-invalid':addTopicForm.get('newTopic').touched && addTopicForm.get('newTopic').invalid}">
+                <div class="invalid-feedback">
+                  <p>Enter Topic</p>
+                </div>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <button mdbBtn color="primary" class="waves-light" [disabled]="!addTopicForm.valid" type="submit"
+                mdbWavesEffect>Save</button>
+              <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+                data-dismiss="modal" (click)="addTopicframe.hide()">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!--#####################################################-->
+    <!--Model To Add Topic Questions-->
+
+  </div>
+  <div class="ml-auto" id="addQuestions">
+    <button style="float: left;" type="button" class="btn btn-primary px-3 py-2" (click)="addQuestionframe.show()"
+      mdbWavesEffect>
+      Add Questions
+    </button>
+    <!--#####################################################-->
+    <!--Model To Add Questions-->
+    <div mdbModal #addQuestionframe="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+          <!--Header-->
+          <div class="modal-header d-flex justify-content-center">
+            <p class="heading">Add New Question</p>
+          </div>
+
+          <!--Body-->
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <!--Question Type -->
+                <label><strong>Question Type</strong></label>
+                <select class="browser-default custom-select mb-4" [(ngModel)]="selectedType">
+                  <option value="" disabled>Choose option</option>
+                  <option *ngFor="let type of questionType" [value]="type">
+                    {{type}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <!--Question Topic -->
+                <label><strong>Question Topic</strong></label>
+                <select class="browser-default custom-select mb-4" [(ngModel)]="newSelectedTopic">
+                  <option value="" disabled>Choose option</option>
+                  <option *ngFor="let topic of testTopic" [value]="topic">
+                    {{topic}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <!--mdb-icon fas icon="bell" size="4x" class="animated rotateIn mb-4"></mdb-icon-->
+            <!--p>Do you want to receive the push notification about the newest posts?</p-->
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+            <a mdbBtn color="primary" class="waves-light btn-sm" (click)="addQuestion(addQuestionframe)"
+              mdbWavesEffect>Proceed</a>
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light btn-sm" mdbWavesEffect
+              data-dismiss="modal" (click)="addQuestionframe.hide()">Cancel</a>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!--Model To Add Questions-->
+    <!--#####################################################-->
+    <button style="float: left;margin-left: -8px;" type="button" class="btn btn-primary px-3 py-2"
+      (click)="AddQuestionsFromExcel()" mdbWavesEffect><i class="fas fa-upload" aria-hidden="true"></i></button>
+    <div style="float: left;margin-top: 5px;">
+      <select style="border-radius: 2px;height: 37px;" class="browser-default custom-select"
+        [(ngModel)]="filterSelectedTopic" (change)="filterQuestion()">
+        <option selected disabled>Open this select menu</option>
+        <option *ngFor="let topic of testTopic" [value]="topic">
+          {{topic}}
+        </option>
+      </select>
+    </div>
+     <!--button  type="button" class="btn btn-primary px-3 py-2" style="margin-left: 1px;margin-top: 5px;"
+      (click)="addTopicframe.show()" mdbWavesEffect><i class="fa fa-plus" aria-hidden="true"></i>
+    </button-->
+    <!--button class="py-2 px-3" mdbBtn type="button" color="success" (click)="saveTestData()"  mdbWavesEffect>
+          <i class="fa fa-check" aria-hidden="true"></i> Save
+      </button-->
+
+    <!--Model To Upload Questions-->
+    <!--To be complete-->
+    <!--Model To Upload Questions-->
+  </div>
+</div>
+<div class="row" style="margin-left: 2px;">
+  <div class="col-md-4 col-sm-12 justify-content-center">
+    <!--Panel-->
+    <div class="card text-center mb-2">
+      <div class=" card-header white-text bgcolor" style="text-shadow: black;">
+        <strong> {{showTestName}}</strong>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Purpose: {{showTestPurpose}}</h5>
+        <h5>Round: {{showTestRound}}</h5>
+        <!--p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
+        <a class="btn btn-sm bgcolor" (click)="editTest.show()" mdbWavesEffect>Edit</a>
+      </div>
+      <div class="card-footer text-muted white-text bgcolor">
+        <h5>
+          <span>
+            <mdb-badge primary="true">Easy( {{difficultyLevel.Easy|IntToString}} )</mdb-badge>
+            &nbsp;&nbsp;&nbsp;
+          </span>
+
+          <span>
+            <mdb-badge primary="true">Medium( {{difficultyLevel.Medium|IntToString}} )</mdb-badge>
+            &nbsp;&nbsp;&nbsp;
+          </span>
+          <span>
+            <mdb-badge primary="true">Hard( {{difficultyLevel.Hard|IntToString}} )</mdb-badge>
+            &nbsp;&nbsp;&nbsp;
+          </span>
+        </h5>
+        <!--p class="mb-0"> 2 days ago</p-->
+      </div>
+    </div>
+    <!--/.Panel-->
+    <div mdbModal #editTest="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+          <form (ngSubmit)="onSubmitTestEdit(editTestForm,editTest)" [formGroup]="editTestForm">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">Edit Test</p>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <!-- Name -->
+              <div class="row">
+                <div class="col-md-6 col-sm-12 form-group">
+                  <input type="text" class="form-control" [(ngModel)]="testName" formControlName="testName"
+                    placeholder="Test Name"
+                    [ngClass]="{'is-invalid':editTestForm.get('testName').touched && editTestForm.get('testName').invalid}">
+                  <div class="invalid-feedback">
+                    <p>Enter TestName</p>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12 form-group">
+                  <input type="text" class="form-control" [(ngModel)]="testRound" formControlName="testRound"
+                    placeholder="Round 1"
+                    [ngClass]="{'is-invalid':editTestForm.get('testRound').touched && editTestForm.get('testRound').invalid}">
+                  <div class="invalid-feedback">
+                    <p>Enter TestRound</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- Subject -->
+                <label>What is Purpose?</label>
+                <select class="form-control browser-default custom-select" [(ngModel)]="testPurpose"
+                  formControlName="testPurpose"
+                  [ngClass]="{'is-invalid':editTestForm.get('testPurpose').touched && editTestForm.get('testPurpose').invalid}">
+                  <option value="" disabled>Choose option</option>
+                  <option *ngFor="let testType of testTypelist" [value]="testType">
+                    {{testType}}
+                  </option>
+                </select>
+                <div class="invalid-feedback">
+                  <p>Select Purpose</p>
+                </div>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <button mdbBtn color="primary" class="waves-light" type="submit" [disabled]="!editTestForm.valid"
+                mdbWavesEffect>Update</button>
+              <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+                data-dismiss="modal" (click)="editTest.hide()">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+
+    <!--Model End-->
+    <!--div style="padding: 15px;background-color:#e9ecef;margin-left: 1%;border-radius: 2px;">
+      <h3>Name: {{showTestName}}</h3>
+      <hr>
+      <h5>Purpose: {{showTestPurpose}}</h5>
+      <hr>
+      <h5>Test Round: {{showTestRound}}</h5>
+      <div class="edit-test" style="margin-bottom: 50px;">
+        <button style="float: right;margin-right: 5%;" type="button" class="btn btn-info px-2 py-2"
+          (click)="editTest.show()" mdbWavesEffect><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
+      </div-->
+    <!--Model Start-->
+    <!--/div-->
+  </div>
+  <div class="col-md-8 col-sm-12">
+    <div *ngIf="questionsAvailable">
+      <div class="container" style="width: 100%;" *ngFor="let filterQuestion of filterQuestionOfTopic">
+        <!-- Card -->
+        <div class="card p-3 mx-40 mb-3" style="background-color: #e9ecef;height: 40%;">
+          <div class="question">
+            <h5><strong>Question</strong></h5>
+            <div class="questionVal" [innerHtml]="filterQuestion.question|decodePipe"></div>
+            <h5><strong>Answer</strong></h5>
+            <div class="answer" [ngSwitch]="filterQuestion.questionType">
+              <div class="checkbox" *ngSwitchCase="'Checkbox'">
+                <div class="row" style="margin-bottom: 1.5%;" *ngFor="let option of filterQuestion.option">
+                  <mat-checkbox disabled [checked]="option.optionStatus" style="float: left;"></mat-checkbox>
+                  <div class="optionStyle" style="float: center;margin-left: 2%;background-color: aliceblue;"
+                    [innerHtml]="option.optionValue|decodePipe">
+                  </div>
+                </div>
+              </div>
+              <div class="multichoice" *ngSwitchCase="'Multichoice'">
+                <mat-radio-group [(ngModel)]="selectedOption">
+                  <div class="row" style="margin-bottom: 1%;" *ngFor="let option of filterQuestion.option">
+                    <mat-radio-button [checked]="option.optionStatus" [value]="option.optionId" disabled
+                      style="float: left;"></mat-radio-button>
+                    <div class="optionStyle" style="float: center;margin-left: 1%;"
+                      [innerHtml]="option.optionValue|decodePipe">
+                    </div>
+                  </div>
+                </mat-radio-group>
+              </div>
+              <!--div class="shortAnswer " *ngSwitchCase="'ShortAnswer'">
+              <div class="row">
+                <div class="optionStyle">{{ filterQuestion.option|decodePipe }}</div>
+              </div>
+            </div>
+            <div class="longAnswer" *ngSwitchCase="'LongAnswer'">
+              <div class="row ">
+                <div class="optionStyle">{{ filterQuestion.option }}</div>
+              </div>
+            </div-->
+            </div>
+          </div>
+          <div class="edit">
+            <div style="float: left;margin-left: 8%;margin-top: 2%;">
+              <h5>
+                <span>
+                  <mdb-badge success="true">{{ filterQuestion.difficultyLevel }}</mdb-badge>
+                  &nbsp;&nbsp;&nbsp;
+                </span>
+
+                <span>
+                  <mdb-badge primary="true">{{ filterQuestion.questionType }}</mdb-badge>
+                  &nbsp;&nbsp;&nbsp;
+                </span>
+                <span>
+                  <mdb-badge default="true">{{ filterQuestion.questionTopic }}</mdb-badge>
+                  &nbsp;&nbsp;&nbsp;
+                </span>
+              </h5>
+            </div>
+            <a class="btn btn-sm bgcolor" style="float: right;margin-right: 5%;" (click)="editQuestion(filterQuestion)"
+              mdbWavesEffect>Edit</a>
+            <!--button style="float: right;margin-right: 5%;" type="button" class="btn btn-info py-2 px-2"
+            (click)="editQuestion(filterQuestion)" mdbWavesEffect><i class="fa fa-pencil-square-o"
+              aria-hidden="true"></i>Edit</button-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!questionsAvailable" style="width: 95%;">
+      <div class="alert alert-info" role="alert">
+        No Questions Available for the selected Type!
+      </div>
+    </div>
+  </div>
+</div>

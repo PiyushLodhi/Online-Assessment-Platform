@@ -1,0 +1,204 @@
+
+<!--header class="h-100">
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+      <mdb-navbar-brand>
+        <a class="logo navbar-brand" href="#">
+          <strong>Navbar</strong>
+        </a>
+      </mdb-navbar-brand>
+      <links>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active waves-light" mdbWavesEffect>
+            <a class="nav-link">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link">Link</a>
+          </li>
+          <li class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link">Profile</a>
+          </li>
+        </ul>
+      </links>
+    </mdb-navbar-->
+<!-- Main -->
+<!--div class="view intro-2">
+      <div class="full-bg-img">
+        <div class="mask rgba-purple-light flex-center">
+          <div class="container text-center white-text wow fadeInUp">
+            <h2>This Navbar is fixed and transparent</h2>
+            <br>
+            <h5>It will always stay visible on the top, even when you scroll down</h5>
+            <p>Navbar's background will switch from transparent to solid color while scrolling down</p>
+            <br>
+            <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+          </div>
+        </div>
+      </div>
+    </div-->
+<!-- /.Main -->
+<!--/header-->
+<!--Main Navigation-->
+
+<!--Main Layout-->
+<!--main class="text-center py-5">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        </div>
+      </div>
+    </div>
+
+  </main-->
+<!--Main Layout-->
+<!--app-selected-test-details></app-selected-test-details-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Library</li>
+    </ol>
+</nav>
+
+<div class="container clearfix" id="tests-view-panel">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-6 left-menu-cont">
+            <div class="form-group" style="margin-top: 6%;">
+                <input type="text" class="form-control" placeholder="Search By Type" [(ngModel)]="searchTest">
+            </div>
+            <mat-accordion>
+                <!-- #docregion basic-panel -->
+                <!-- #docregion hide-toggle -->
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Filter Type
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <li class="toggel-category py-2">
+                        <a (click)="searchTest = 'a'">
+                            <div class="test-type" >
+                                PSYCHOMETRIC
+                            </div>
+                        </a>
+                    </li>
+                    <li class="toggel-category py-2">
+                        <a (click)="searchTest = 'b'">
+                            <div class="test-type" >
+                                APTITUDE
+                            </div>
+                        </a>
+                    </li>
+                    <li class="toggel-category py-2">
+                        <a (click)="searchTest = 'c'">
+                            <div class="test-type" >
+                                CODING
+                            </div>
+                        </a>
+                    </li>
+                    <li class="toggel-category py-2">
+                        <a (click)="searchTest = 'd'">
+                            <div class="test-type" >
+                                DOMAIN
+                            </div>
+                        </a>
+                    </li>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6 test-card-cont px=0">
+            <div class="row test-card-list">
+                <div class="col-xs-12">
+                    <div class="tags ">
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative"
+                    *ngFor="let test of premiumTests | testFilter:searchTest">
+                    <a (click)="goToTestDetail(test.testId)">
+                        <div class="card py-3">
+                          <!--img src="img_avatar2.png" alt="Avatar" style="width:100%"-->
+                          <div class="container">
+                            <p class="h-50 text-bold">{{ test.testName }}</p>
+                            <div class="d-flex small mt-2 font-size-80">
+                              <!--small class="mr-3"><i class="fa fa-clock-o"></i> 85 MIN</small-->
+                              <small># {{ test.questions }} QUES</small>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    <!--app-premium-card></app-premium-card-->
+                </div>
+                <!--div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 my-2 position-relative">
+                    <app-premium-card></app-premium-card>
+                </div-->
+            </div>
+        </div>
+    </div>
+</div>

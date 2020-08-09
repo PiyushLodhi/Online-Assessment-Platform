@@ -1,0 +1,53 @@
+<div class="container my-4" style="width: 80%;">
+    <!-- Card -->
+    <div class="card p-3 mx-40" style="background-color: #e9ecef;">
+        <button type="button" class="btn btn-danger px-3"  mwlConfirmationPopover
+            [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="bottom" (confirm)="removeQuestion()"
+            (cancel)="cancelClicked = true" mdbWavesEffect><i class="fas fa-trash-alt" aria-hidden="true"></i>
+        </button>
+        <div class="question">
+            <h5><strong>Question</strong></h5>
+            <br>
+            <app-question-box [tempData]="tempData.question"></app-question-box>
+        </div>
+        <div class="answer">
+            <h5> <strong>Answer</strong></h5>
+            <br>
+            <div [ngSwitch]="selectedType">
+                <!--Add checkbox-->
+                <app-checkbox [tempData]="tempData.option" *ngSwitchCase="'Checkbox'"></app-checkbox>
+
+                <!--Multiple choice-->
+                <app-multiple-choice [tempData]="tempData.option" *ngSwitchCase="'Multichoice'">
+                </app-multiple-choice>
+
+                <!--Short Type Answer-->
+                <app-short-answer [tempData]="tempData.option" *ngSwitchCase="'ShortAnswer'"></app-short-answer>
+
+                <!--Long Type Answer-->
+                <app-long-answer [tempData]="tempData.option" *ngSwitchCase="'LongAnswer'"></app-long-answer>
+                <!--Default Option-->
+                <div *ngSwitchDefault>Choose An option</div>
+            </div>
+        </div>
+        <hr>
+        <div class="container-3">
+            <div class="form-group row" style="margin-left: 10px;">
+                <div class="col-md-3 col-sm-4 col-xs-4">
+                    <!--Difficulty Level-->
+                    <label><strong>Level</strong></label>
+                    <select class="browser-default custom-select mb-4" (change)="setPoints()" [(ngModel)]="selectedLevel">
+                        <option value="" disabled>Choose option</option>
+                        <option *ngFor="let level of difficultyLevel" [value]="level">
+                            {{level}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-4">
+                    <label for="ex3"><strong>Points</strong></label>
+                    <input class="form-control" id="ex3" type="text" [(ngModel)]="points">
+                </div>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>

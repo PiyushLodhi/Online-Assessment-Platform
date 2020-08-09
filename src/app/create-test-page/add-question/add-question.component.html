@@ -1,0 +1,73 @@
+<div class="breadcrumb" style="height:70px;">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a style="color:#007bff;" (click)="goToTests()">Tests</a></li>
+    <li class="breadcrumb-item"><a style="color:#007bff;" (click)="goToViewTest()">ViewTest</a></li>
+    <li class="breadcrumb-item active" aria-current="page">AddQuestions</li>
+  </ol>
+    <div class="ml-auto">
+        <button class="py-2" mdbBtn type="button" [disabled] = "!btnEnable" color="success" (click)="saveQuestions()" mdbWavesEffect>
+            <i class="fa fa-check" aria-hidden="true"></i> {{ btnstatus }}
+        </button>
+    </div>
+</div>
+<ng-template #container>
+
+</ng-template>
+<div id="AddButton" *ngIf="!edit">
+    <button  matTooltip="Add new question" mat-fab  color="primary" style="outline: none;" (click)="addQuestionframe.show()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<!--Model To Add Questions-->
+<div mdbModal #addQuestionframe="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info" role="document">
+  <!--Content-->
+  <div class="modal-content text-center">
+    <!--Header-->
+    <div class="modal-header d-flex justify-content-center">
+      <p class="heading">Add New Question</p>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <!--Question Type -->
+          <label><strong>Question Type</strong></label>
+          <select class="browser-default custom-select mb-4" [(ngModel)]="selectedType">
+            <option value="" disabled>Choose option</option>
+            <option *ngFor="let type of questionType" [value]="type">
+              {{type}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <!--Question Topic -->
+          <label><strong>Question Topic</strong></label>
+          <select class="browser-default custom-select mb-4" [(ngModel)]="selectedTopic">
+            <option value="" disabled>Choose option</option>
+            <option *ngFor="let topic of testTopic" [value]="topic">
+              {{topic}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!--mdb-icon fas icon="bell" size="4x" class="animated rotateIn mb-4"></mdb-icon-->
+      <!--p>Do you want to receive the push notification about the newest posts?</p-->
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center">
+      <a mdbBtn color="primary" class="waves-light" (click)="addQuestion(addQuestionframe)"
+        mdbWavesEffect>Proceed</a>
+      <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+        data-dismiss="modal" (click)="addQuestionframe.hide()">Cancel</a>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Model To Add Questions-->

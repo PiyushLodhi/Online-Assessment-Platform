@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="scrolling-wrapper">
+      <div  [ngClass]="filterIndex==i ? 'activecard' : 'card' "  *ngFor="let filter of filters; let i = index">
+        <a (click)="nextFilter(i)" ><h4 style="color: white;">
+          <strong> {{ filter }}</strong>
+        </h4></a>
+      </div>
+    </div>
+
+    <div class="scrollbar scrollbar-primary" *ngIf="questionList.length >0 ">
+      <div class="force-overflow" *ngIf="filterIndex == 0">
+        <div class="list-group" *ngFor="let x of questionList; let i = index">
+          <a
+            class="list-group-item waves-light"
+            [class.active]="i == quesIndex"
+            mdbWavesEffect
+            (click)="skipQues(x.id)"
+          >
+            <strong>QuesID :{{ x.id }}</strong>
+          </a>
+        </div>
+      </div>
+      <div class="force-overflow" *ngIf="filterIndex == 1">
+        <div class="list-group" *ngFor="let x of unsolvedList; let i = index">
+          <a
+            class="list-group-item waves-light"
+            [class.active]="i == quesIndex && x.id == quesId"
+            mdbWavesEffect
+            (click)="skipQues(x.id)"
+          >
+            <strong>QuesID :{{ x.id }}</strong>
+          </a>
+        </div>
+      </div>
+      <div class="force-overflow" *ngIf="filterIndex == 2">
+        <div class="list-group" *ngFor="let x of markedList; let i = index">
+          <a
+            class="list-group-item waves-light"
+            [class.active]="i == quesIndex && x.id == quesId"
+            mdbWavesEffect
+            (click)="skipQues(x.id)"
+          >
+            <strong>QuesID :{{ x.id }}</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

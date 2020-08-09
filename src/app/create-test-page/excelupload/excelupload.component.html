@@ -1,0 +1,259 @@
+<div class="container">
+  <h1 class="text-center">Upload Test</h1>
+    <div class="row">
+      <div class="col text-center ">
+      <div class="card">
+      <h3  class="card-header text-center font-weight-light  py-4">Please select xlsx or xls file of given format  and with  correct spelling</h3>
+    </div>
+  </div>
+      <table class="table table-striped table-responsive-md btn-table">
+
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>question</th>
+                <th>option1</th>
+                <th>option2</th>
+                <th>option3</th>
+                <th>option4</th>
+                <th>correctAnswer</th>
+                <th>level</th>
+                <th>subject</th>
+                <th>points</th>
+              </tr>
+            </thead>
+          
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Synonym of happy</td>
+                <td>sad</td>
+                <td>lazy</td>
+                <td>delight</td>
+                <td>sorrow</td>
+
+                <td>
+                  <select class="form-control">
+                    <option select disabled>Select correct answer</option>
+                    <option >option1</option>
+                    <option >option2</option>
+                    <option >option3</option>
+                    <option >option4</option>
+                  </select>
+                </td>
+
+                <td> <select class="form-control">
+                    <option select disabled>Select level from predifined levels</option>
+                    <option >Easy</option>
+                    <option >Intermediate</option>
+                    <option >Hard</option>
+                  </select>
+                </td>
+
+                <td> <select class="form-control" >
+                  <option select disabled>Select level from predifined subject</option>
+                  <option *ngFor="let subject of predifinedSubjects">{{subject}}</option>
+                </select>
+              </td>
+
+                <td>
+                  10
+                </td>
+
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+               <td>Synonym of happy</td>
+               <td>sad</td>
+               <td>lazy</td>
+               <td>delight</td>
+               <td>sorrow</td>
+
+               <td>
+                 <select class="form-control">
+                   <option select disabled>Select correct answer</option>
+                   <option >option1</option>
+                   <option >option2</option>
+                   <option >option3</option>
+                   <option >option4</option>
+                 </select>
+               </td>
+
+               <td> <select class="form-control">
+                   <option select disabled>Select level from predifined levels</option>
+                   <option >Easy</option>
+                   <option >Intermediate</option>
+                   <option >Hard</option>
+                 </select>
+               </td>
+
+               <td> <select class="form-control" >
+                <option select disabled>Select level from predifined subject</option>
+                <option *ngFor="let subject of predifinedSubjects">{{subject}}</option>
+              </select>
+            </td>
+
+               <td>
+                 10
+               </td>
+
+              </tr>
+
+
+              <tr>
+                <th scope="row">3</th>
+             
+               <td>Synonym of happy</td>
+               <td>sad</td>
+               <td>lazy</td>
+               <td>delight</td>
+               <td>sorrow</td>
+
+               <td>
+                 <select class="form-control">
+                   <option select disabled>Select correct answer</option>
+                   <option >option1</option>
+                   <option >option2</option>
+                   <option >option3</option>
+                   <option >option4</option>
+                 </select>
+               </td>
+
+               <td> <select class="form-control">
+                   <option select disabled>Select level from predifined levels</option>
+                   <option >Easy</option>
+                   <option >Intermediate</option>
+                   <option >Hard</option>
+                 </select>
+               </td>
+
+               <td> <select class="form-control" >
+                <option select disabled>Select level from predifined subject</option>
+                <option *ngFor="let subject of predifinedSubjects">{{subject}}</option>
+              </select>
+            </td>
+
+               <td>
+                 10
+               </td>
+              </tr>
+            </tbody>
+          
+          </table>
+    </div>
+
+    
+
+    <div class="image-upload-wrap">
+      <input class="file-upload-input form-control" type="file" (change)="uploadedFile($event)" placeholder="Upload file" accept=".xlsx">
+      <div class="drag-text">
+        <h3 style="padding-top: 10px;">Drag and drop a file or click to select </h3>
+      </div>
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="titlerror">
+      <h4 class="alert-heading">Error in sheet!</h4>
+      <p>Sheet format is not correct</p>
+      <hr>
+      <p>Please include all columns from above specified format  and with correct spelling  </p>
+    </div>
+<div class="row" *ngIf="errorinsheet && !titlerror">
+  <!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4"  style="color: red;">Please correct errors in table below</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      
+      <table class="table table-bordered table-responsive-md table-striped text-center " >
+        <tr>
+                <th class="text-center">id</th>
+                <th class="text-center">question</th>
+                <th class="text-center">option1</th>
+                <th class="text-center">option2</th>
+                <th class="text-center">option3</th>
+                <th class="text-center">option4</th>
+                <th class="text-center">correctAnswer</th>
+                <th class="text-center">level</th>
+                <th class="text-center">subject</th>
+                <th class="text-center">points</th>
+                <th class="text-center">Remove</th>
+        </tr>
+        <tr *ngFor="let question of questionList; let id = index">
+          <td>
+            <span (keyup)="changeValue(id, 'id', $event)" (blur)="updateList(id, 'id', $event)" contenteditable="true">{{question.id}}</span>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'question', $event)" (blur)="updateList(id, 'question', $event)">{{question.question}}</span>
+            <p style="color: red;" *ngIf="question.question=='' ">Empty fields not allowed </p>
+          </div>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'option1', $event)" (blur)="updateList(id, 'option1', $event)">{{question.option1}}</span>
+            <p style="color: red;" *ngIf="question.option1=='' ">Empty fields not allowed </p>
+          </div>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'option2', $event)" (blur)="updateList(id, 'option2', $event)">{{question.option2}}</span>
+            <p style="color: red;" *ngIf="question.option2=='' ">Empty fields not allowed </p>
+          </div>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'option3', $event)" (blur)="updateList(id, 'option3', $event)">{{question.option3}}</span>
+            <p style="color: red;" *ngIf="question.option3=='' ">Empty fields not allowed </p>
+          </div>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true"  (keyup)="changeValue(id, 'option4', $event)" (blur)="updateList(id, 'option4', $event)">{{question.option4}}</span>
+            <p style="color: red;" *ngIf="question.option4=='' ">Empty fields not allowed </p>
+          </div>
+          </td>
+          <td>
+           <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'correctAnswer', $event)" (blur)="updateList(id, 'correctAnswer', $event)">{{question.correctAnswer}}</span>
+            <p style="color: red;" *ngIf="this.predinedAnswer.indexOf(question.correctAnswer)==-1 ">Use only predifined answers</p>
+          </div>
+          </td>
+          <td>
+            <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'level', $event)" (blur)="updateList(id, 'level', $event)">{{question.level}}</span>
+            <p style="color: red;" *ngIf="this.predinedlevels.indexOf(question.level)==-1 ">Use only predifined levels </p>
+          </div>
+          </td>
+          <td>
+          <div>
+            <span contenteditable="true" (keyup)="changeValue(id, 'subject', $event)" (blur)="updateList(id, 'subject', $event)">{{question.subject}}</span>
+            <p style="color: red;" *ngIf="this.predifinedSubjects.indexOf(question.subject)==-1 ">Use only predifined subjects</p>
+          </div>
+          </td>
+          <td>
+            <div>
+              <span contenteditable="true" (keyup)="changeValue(id, 'points', $event)" (blur)="updateList(id, 'points', $event)">{{question.points}}</span>
+              <p style="color: red;" *ngIf="question.points=='' ">Empty fields not allowed </p>  
+              <p style="color: red;" *ngIf="notvalidpoints(question.points)">Range in 0 to 10000 </p>  
+            </div>
+          </td>
+          
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->
+</div>
+
+<div class="row ">
+  <div class="col text-center ">
+  <button *ngIf="verified && !titlerror" type="button" mdbBtn color="success" (click)="onSubmit()" mdbWavesEffect>Submit</button>
+</div>
+</div>
+</div>

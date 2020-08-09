@@ -1,0 +1,83 @@
+.list-group {
+  margin-bottom: 5px;
+  margin-right: 4px;
+}
+.container {
+  padding: 10px;
+}
+
+h4{
+    color:white;
+    padding-left: 10px ;
+      padding-right: 10px;
+      padding-top : 5px;
+     
+    
+
+}
+
+.filterOption{
+    display: flex;
+    justify-content: space-between;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin:10px;
+    
+    -webkit-overflow-scrolling: touch;
+  
+    .card {
+      display: inline-block;
+      background-color: #4a5568;
+      
+      margin-left:7px;
+      margin-right: 7px;
+    }
+    .activecard {
+      display: inline-block;
+      background-color:#0000FF;
+      
+      margin-left:7px;
+      margin-right: 7px;
+    }
+  }
+
+  .scrolling-wrapper {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+   
+
+
+        
+    
+
+
+.scrollbar {
+  float: left;
+  height: 800px;
+  width: 90%;
+
+  overflow-y: scroll;
+  margin-bottom: 5%;
+  margin-left: 5%;
+}
+.force-overflow {
+  min-height: 450px;
+}
+
+.scrollbar-primary::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgb(246, 249, 250);
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: lightcoral;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #4285f4;
+}

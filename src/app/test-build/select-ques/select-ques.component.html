@@ -1,0 +1,60 @@
+<app-search-box
+  [topics]="topics"
+  [difficultyList]="difficultyList"
+  [typeList]="typeList"
+  (onSearchEvent) ="onSearch($event)"
+></app-search-box>
+
+<div
+  class="container-fluid"
+  style="padding-left: 3px; padding-right: 3px; margin-top: 10px;"
+>
+  <div *ngFor="let ques of results; let i = index" style="margin-bottom: 5px;">
+    <mdb-card cascade="true" wider="true">
+      <mdb-card-body>
+        <mdb-card-title>
+          <span>{{ques.id}}</span>
+          <h4  [innerHTML]="ques.description | highlight: query"></h4>
+          <div style="display: flex; justify-content: flex-end;">
+            <h5>
+              <span
+                ><mdb-badge success="true">{{ ques.difficulty }}</mdb-badge>
+                &nbsp;&nbsp;&nbsp;</span
+              >
+              <span
+                ><mdb-badge primary="true">{{ ques.type }}</mdb-badge>
+                &nbsp;&nbsp;&nbsp;</span
+              >
+              <span>
+                <mdb-badge default="true">{{ ques.category }}</mdb-badge>
+                &nbsp;&nbsp;&nbsp;</span
+              >
+            </h5>
+          </div>
+        </mdb-card-title>
+        <div *ngIf="ques.type === 'multiple'">
+          <ul *ngFor="let option of ques.options">
+            <li>{{ option }}</li>
+          </ul>
+        </div>
+        <div *ngIf="ques.type !== 'multiple'" class="text-area">
+          <textarea
+            type="text"
+            id="text-area"
+            class="md-textarea form-control"
+            rows="2"
+            mdbInput
+          ></textarea>
+        </div>
+
+        <a (click)="AddtoQuestionCart(ques)" mdbBtn color="primary" mdbWavesEffect>
+          Add to Question Cart</a
+        >
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+  <div style="display: flex; justify-content: center;">
+    <app-pagination></app-pagination>
+  </div>
+</div>

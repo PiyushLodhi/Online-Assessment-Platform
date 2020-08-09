@@ -1,0 +1,93 @@
+<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading> -->
+<div class="main-body">
+  <mdb-card
+    class="py-1 my-1"
+    cascade="true"
+    wider="true"
+    style="padding: 12px;"
+  >
+    <mdb-card-body class="py-1 my-0">
+      <p class="py-0 my-0"><strong>Section : </strong></p>
+      <a class="btn btn-primary p-2 mx-0"
+        ><strong>{{currentSection}}</strong></a
+      >
+    </mdb-card-body>
+  </mdb-card>
+  <mdb-card cascade="true" wider="true" style="padding: 12px;">
+    <mdb-card-body cascade="true" class="pb-0 px-0">
+      <!--Card content-->
+      <h5 class="card-title">
+        Question {{ index + 1 }} of {{ results.length }}  | QuesId : {{results[index].id}}
+      </h5>
+      <hr />
+      <h4>
+        <strong>{{ results[index].description }}</strong>
+      </h4>
+
+      <form>
+        <div
+          class="list-group"
+          *ngFor="let option of results[index].options; let i = index"
+        >
+          <a
+            class="list-group-item list-group-item-action waves-light"
+            mdbWavesEffect
+            ><input
+              type="radio"
+              [checked]="optionIndex > 0 && i === optionIndex"
+              name="option"
+              (click)="SubmitAnswer(i)"
+              value="{{ option }}"
+            />{{ option }}
+          </a>
+        </div>
+      </form>
+    </mdb-card-body>
+
+    <div
+      class="btn-group row"
+      role="group"
+      aria-label="Basic example"
+      style="margin-top: 10px;"
+    >
+      <div class="col-lg-8" style="justify-content: start;">
+        <button
+          style="color: black;"
+          class="btn btn-warning waves-light"
+          (click)="markQues(results[index].id, index)"
+          mdbWavesEffect
+        >
+          <strong
+            >{{ isMarked ? 'Already Marked' : 'Mark For Review' }}</strong
+          >
+        </button>
+      </div>
+      <div class="col-lg-2" style="justify-content: end;">
+        <button
+          mdbBtn
+          [hidden]="index === 0"
+          type="button"
+          color="primary"
+          (click)="prevQues()"
+          class="waves-light"
+          mdbWavesEffect
+        >
+          Prev
+        </button>
+      </div>
+      <div class="col-lg-2" style="justify-content: end;">
+        <button
+          mdbBtn
+          [hidden]="index === results.length - 1"
+          type="button"
+          color="primary"
+          (click)="nextQues()"
+          class="waves-light"
+          mdbWavesEffect
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mdb-card>
+</div>

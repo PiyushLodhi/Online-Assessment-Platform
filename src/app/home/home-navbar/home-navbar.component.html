@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" (scroll)="onWindowScroll($event);" >
+    <div class="container">
+      <a class="navbar-brand">    
+        <img src="https://api.startupindia.gov.in/sih/api/file/user/image/Startup?fileName=04c4437c-4b51-4ece-ace2-0bb679fdcef2.png" height="35" alt="">
+        NykAssessment
+      </a>
+      <button class="navbar-toggler navbar-toggler-right"  type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()" ><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{ 'show': navbarOpen }">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item"><a class="nav-link" [routerLink]="['/home']">Home</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['/about']">About</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
+          <li class="nav-item"><a class="nav-link "[routerLink]="['/register']" >Sign up</a></li>
+          <li class="nav-item"><a class="nav-link " [routerLink]="['/login']" ><i class="fa fa-key" aria-hidden="true"></i> Login</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>

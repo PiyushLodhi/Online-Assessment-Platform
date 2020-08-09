@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <div class="card m-1">
+                <div class="card-body">
+                    <h5 class="card-title">Create Test</h5>
+                    <div class="row">
+                        <div class="col-12">
+                            <button style="width:90%" type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal"
+                                data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Create New
+                                Test</button>
+                        </div>
+                        <div class="col-12">
+                            <button style="width:90%" mdbBtn type="button" color="info" (click)="addTestFromLibrary()" mdbWavesEffect >
+                                Add From Library
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <button style="width:90%" mdbBtn type="button" color="warn" (click)="addTestFromPremium()" mdbWavesEffect >
+                                <i class='fas fa-crown'></i> Premium Tests
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--div class="form-group" style="margin-top: 6%;">
+                <input type="text" class="form-control" placeholder="Search By Type" [(ngModel)]="searchTest">
+            </div-->
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <div class="container-3" *ngIf="true">
+                <ng-template #container>
+                </ng-template>
+            </div>
+            <div class="container-3" *ngIf="false"></div>
+        </div>
+    </div>
+</div>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <form (ngSubmit)="onSubmit(createTestForm,frame)" [formGroup]="createTestForm">
+                <!--Header-->
+                <div class="modal-header d-flex justify-content-center">
+                    <p class="heading">New Test</p>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <!-- Name -->
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 form-group">
+                            <input type="text" class="form-control" [(ngModel)]="testName" formControlName="testName"
+                                placeholder="Test Name"
+                                [ngClass]="{'is-invalid':createTestForm.get('testName').touched && createTestForm.get('testName').invalid}">
+                            <div class="invalid-feedback">
+                                <p>Enter TestName</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 form-group">
+                            <input type="text" class="form-control" [(ngModel)]="testRound"
+                                formControlName="testRound" placeholder="Round 1"
+                                [ngClass]="{'is-invalid':createTestForm.get('testRound').touched && createTestForm.get('testRound').invalid}">
+                            <div class="invalid-feedback">
+                                <p>Enter TestRound</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Subject -->
+                        <label>What is Purpose?</label>
+                        <select class="form-control browser-default custom-select" formControlName="purpose"
+                            [ngClass]="{'is-invalid':createTestForm.get('purpose').touched && createTestForm.get('purpose').invalid}">
+                            <option value="" disabled>Choose option</option>
+                            <option *ngFor="let testType of testTypelist" [value]="testType">
+                                {{testType}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <p>Select Purpose</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <button mdbBtn color="primary" class="waves-light" type="submit" [disabled]="!createTestForm.valid"
+                        mdbWavesEffect>Proceed</button>
+                    <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+                        data-dismiss="modal" (click)="frame.hide()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+

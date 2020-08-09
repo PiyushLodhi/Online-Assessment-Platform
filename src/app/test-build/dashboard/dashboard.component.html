@@ -1,0 +1,20 @@
+<div class="container-fluid" style="padding: 13px;">
+  <mdb-card cascade="true" wider="true">
+    <mdb-card-body class="search-card">
+      <h4 style="color: #171926;">
+        <strong>Topics </strong>
+      </h4>
+
+      <div class="list-group" *ngFor="let t of topics; let i = index">
+        <a
+          href="#"
+          class="list-group-item waves-light"
+          [class.active]="i == 3"
+          mdbWavesEffect
+        >
+          {{ t }}
+        </a>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>

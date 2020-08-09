@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Sacramento&display=swap');
+
+.positon{
+  min-height:100%;
+  position:relative;
+}
+
+input.ng-valid.ng-touched
+{
+  border-right: 5px solid #42A948; /* green */
+}

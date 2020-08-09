@@ -1,0 +1,63 @@
+{
+    "testId": 1,
+    "testName": "technical",
+    "testPurpose": "Hiring",
+    "questions": [
+        {
+            "questionId":1,
+            "questionType":"Multichoice",
+            "questionTopic":"Physics",
+            "questionValue":"Question 1",
+            "points":10,
+            "difficultyLevel":"Easy",
+            "option":[
+                {"optionId":1,"value":"Option 1","status":true},
+                {"optionId":2,"value":"Option 2","status":false},
+                {"optionId":3,"value":"Option 3","status":false},
+                {"optionId":4,"value":"Option 4","status":false}
+            ]
+        },
+        {
+            "questionId":2,
+            "questionType":"Checkbox",
+            "questionTopic":"Physics",
+            "questionValue":"Question 2",
+            "points":10,
+            "difficultyLevel":"Hard",
+            "option":[
+                {"optionId":1,"value":"Option 1","status":true},
+                {"optionId":2,"value":"Option 2","status":true},
+                {"optionId":3,"value":"Option 3","status":false},
+                {"optionId":4,"value":"Option 4","status":false}
+            ]
+        },
+        {
+            "questionId":3,
+            "questionType":"Multichoice",
+            "questionTopic":"Maths",
+            "questionValue":"Question 3",
+            "points":10,
+            "difficultyLevel":"Easy",
+            "option":[
+                {"optionId":1,"value":"Option 1","status":false},
+                {"optionId":2,"value":"Option 2","status":true},
+                {"optionId":3,"value":"Option 3","status":false},
+                {"optionId":4,"value":"Option 4","status":false}
+            ]
+        },
+        {
+            "questionId":4,
+            "questionType":"Checkbox",
+            "questionTopic":"Maths",
+            "questionValue":"Question 4",
+            "points":10,
+            "difficultyLevel":"Hard",
+            "option":[
+                {"optionId":1,"value":"Option 1","status":true},
+                {"optionId":2,"value":"Option 2","status":true},
+                {"optionId":3,"value":"Option 3","status":false},
+                {"optionId":4,"value":"Option 4","status":false}
+            ]
+        }
+    ]
+}

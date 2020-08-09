@@ -1,0 +1,152 @@
+<div>
+  <div
+    class="row"
+    style="margin: 0%; padding: 2%; display: flex; justify-content: center;"
+  >
+    <div class="col-md-8">
+      <div
+        class="primary-color-dark text-center text-uppercase p-md-2"
+        style="color: white;"
+      >
+        <h4>
+          <strong>Please read the following instruction carefully</strong>
+        </h4>
+      </div>
+      <div class="instruction">
+        <strong>
+          <ul style="padding: 0; margin: 0;">
+            <li>
+              Candidates will have to invariably produce and submit the
+              requisite documents such as valid call letter, a photocopy of
+              photo-identity proof bearing the same name as it appears on the
+              online submitted application form etc. at the time of examinations
+              (Preliminary & Main). No document shall be directly sent to IBPS
+              by candidates before or after the online examinations (Preliminary
+              & Main).
+            </li>
+            <br />
+            <li>
+              Before applying for the post, the candidate should ensure that
+              he/she fulfils the eligibility and other norms mentioned in this
+              advertisement. Candidates are therefore advised to carefully read
+              this advertisement and follow all the instructions given for
+              submitting online application.
+            </li>
+            <br />
+            <li>
+              All the candidates who wish to apply under CRP-Clerk-VIII are
+              hereby informed that providing AADHAR number or AADHAR Enrolment
+              number in the application, for CRP Clerk-VIII is optional.
+            </li>
+            <br />
+            <li>
+              A Candidate’s admission to the Preliminary examination/
+              shortlisting for Main examination/ admission to the Main
+              examination and subsequent processes is strictly provisional. The
+              mere fact that the call letter(s)/ provisional allotment has been
+              issued to the candidate does not imply that his/ her candidature
+              has been finally cleared by IBPS/ Participating Organisation.
+              IBPS/ Participating Organisations would be free to reject any
+              application, at any stage of the process, cancel the candidature
+              of the candidate in case it is detected at any stage that a
+              candidate does not fulfill the eligibility norms and/or that
+              he/she has furnished any incorrect/false
+              information/certificate/documents or has suppressed any material
+              fact(s).If candidature of any candidate is rejected for any reason
+              according to the terms and conditions of this advertisement, no
+              further representation in this regard will be entertained. Such
+              decisions shall be final and binding on the candidate. If any of
+              these shortcomings is/are detected after appointment in a
+              Participating Organisation, his/her services are liable to be
+              summarily terminated.
+            </li>
+            <br />
+            <li>
+              Total Marks : {{ testDetails.totalMarks }} <br />
+
+              Total Time : {{ testDetails.duration }} HH:MM:SS <br />
+            </li></ul
+        ></strong>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>C# Intern Test : {{ testDetails.testid }}</h3>
+      <div style="display: flex; flex-direction: column;">
+        <div
+          *ngFor="let x of sections; let i = index"
+          class="card text-center mb-3"
+        >
+          <div class="card-header py-1 primary-color-dark white-text">
+            <h4>
+              <strong>{{ x }}</strong>
+            </h4>
+          </div>
+
+          <div class="card-body py-2 text-left" *ngIf="i == 0">
+            <strong>
+              <ul>
+                <li class="card-text">
+                  No of Question : {{ testDetails.easy }}
+                </li>
+                <li class="card-text">
+                  Duration : 10 Minutes
+                </li>
+                <li class="card-text">
+                  Correct Answer: {{ testDetails.easycorrect }}
+                </li>
+                <li class="card-text">
+                  Negative : {{ testDetails.easynegative }}
+                </li>
+              </ul>
+            </strong>
+            <div class="text-center white-text">
+              <button [disabled]="!isSectionDone.Easy" (click)="onProceed('Easy')" class="btn btn-success btn-md"><strong>Proceed</strong></button>
+            </div>
+          </div>
+          <div class="card-body py-2 text-left" *ngIf="i == 1">
+            <strong>
+              <ul>
+                <li class="card-text">
+                  No of Question : {{ testDetails.medium }}
+                </li>
+                <li class="card-text">
+                  Duration : 10 Minutes
+                </li>
+                <li class="card-text">
+                  Correct Answer: {{ testDetails.mediumcorrect }}
+                </li>
+                <li class="card-text">
+                  Negative : {{ testDetails.mediumnegative }}
+                </li>
+              </ul>
+            </strong>
+            <div class="text-center white-text">
+              <button [disabled]="!isSectionDone.Medium" (click)="onProceed('Medium')" class="btn btn-success btn-md "><strong>Proceed</strong></button>
+            </div>
+          </div>
+          <div class="card-body py-2 text-left" *ngIf="i == 2">
+            <strong>
+              <ul >
+                <li class="card-text">
+                  No of Question : {{ testDetails.hard }}
+                </li>
+                <li class="card-text">
+                  Duration : 10 Minutes
+                </li>
+                <li class="card-text">
+                  Correct Answer: {{ testDetails.hardcorrect }}
+                </li>
+                <li class="card-text">
+                  Negative : {{ testDetails.hardnegative }}
+                </li>
+              </ul>
+            </strong>
+            <div class="text-center white-text">
+              <button [disabled]="!isSectionDone.Hard" (click)="onProceed('Hard')" class="btn btn-success btn-md"><strong>Proceed</strong></button>
+            </div>
+          </div>
+        </div>
+      </div>a
+    </div>
+  </div>
+</div>

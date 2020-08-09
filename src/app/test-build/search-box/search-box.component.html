@@ -1,0 +1,65 @@
+<div class="container-fluid" style="padding-left: 3px; padding-right: 3px;margin-top: 10px;">
+  <mdb-card  cascade="true" wider="true">
+    <mdb-card-body class="search-card">
+      <div class="row search-row">
+       
+        <div class="col-md-10" >
+            <div class="md-form" >
+                <mdb-icon fas icon="search" class="prefix"></mdb-icon>
+                <input mdbInput  class="form-control" type="text" [(ngModel)]="searchInput" id="search" (input)="onSearchText()">
+                <label for="form2">Search Box ...</label>
+              </div>
+        </div>
+        <div class="col-md-2 result-count"><span></span>results</div>
+      </div>
+   
+
+      <div class="row filter-container">
+           
+
+             <div class="dropdown topic-down"  mdbDropdown>
+
+                <button mdbDropdownToggle mdbBtn color="primary" size="sm"  class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Topics
+                </button>
+              
+                <div class="dropdown-menu dropdown-primary"  >
+                  <a class="dropdown-item" *ngFor="let topic of topics; let i = index" href="#">{{topic}}</a>
+                </div>
+              </div>
+              <div class="dropdown diff-down" mdbDropdown>
+
+                <button mdbDropdownToggle mdbBtn color="primary"   size="sm" class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Difficulty
+                </button>
+              
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item" *ngFor="let difficulty of difficultyList; let i = index" href="#">{{difficulty}}</a>
+                  
+                </div>
+              </div>
+              <div class="dropdown type-down" mdbDropdown>
+
+                <button mdbDropdownToggle mdbBtn color="primary"  size="sm" class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Type
+                </button>
+              
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item"*ngFor="let type of typeList; let i = index" href="#">{{type}}</a>
+                 
+                </div>
+              </div>
+
+
+   
+
+      </div>
+
+    </mdb-card-body>
+</mdb-card>
+    
+  
+</div>

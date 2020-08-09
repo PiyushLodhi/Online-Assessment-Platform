@@ -1,0 +1,171 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="container-fluid">
+      <mdb-card cascade="true" wider="true">
+        <mdb-card-body class="search-card">
+          <h4 style="color: #171926;">
+            <strong>Question Cart</strong>
+          </h4>
+
+          <div
+            class="list-group"
+            *ngFor="let t of questionsDifficulty; let i = index"
+          >
+            <a
+              class="list-group-item d-flex justify-content-between align-items-center waves-light"
+              [class.active]="i === 6"
+              mdbWavesEffect
+            >
+              {{ t }} Questions
+              <span class="badge badge-primary badge-pill">10</span>
+            </a>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button
+              (click)="onToggleEasy()"
+              class="btn btn-link"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+            >
+              <h5>
+                <strong>Section A : Easy Question</strong> &nbsp;&nbsp;
+                <span><i class="fas fa-chevron-down"></i></span>
+              </h5>
+            </button>
+          </h2>
+        </div>
+
+        <div
+          id="collapseOne"
+          class="collapse card-body"
+          style="margin-bottom: 5px;"
+          [ngClass]="{ show: collapse1 === true }"
+          data-parent="#accordionExample"
+        >
+          <div *ngFor="let ques of results; let i = index">
+            <div *ngIf="ques.difficulty === 'easy'">
+              <app-ques-box [ques]="ques"> </app-ques-box>
+              <button
+                (click)="removeFromCart(ques.id)"
+                type="button"
+                class="btn btn-danger"
+              >
+                Remove !
+              </button>
+              <hr style="border: 1px solid grey;" />
+            </div>
+          </div>
+          <div *ngIf="results.length == 0">
+            <div class="alert alert-info" role="alert">
+              No Questions Available For Easy Level!!
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button
+                (click)="onToggleMedium()"
+                class="btn btn-link collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseTwo"
+              >
+                <h5>
+                  <strong>Section B : Medium Question</strong> &nbsp;&nbsp;<span
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </h5>
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseTwo"
+            class="collapse card-body"
+            [ngClass]="{ show: collapse2 === true }"
+            style="margin-bottom: 5px;"
+            data-parent="#accordionExample"
+          >
+            <div *ngFor="let ques of results; let i = index">
+              <div *ngIf="ques.difficulty === 'medium'">
+                <app-ques-box [ques]="ques"></app-ques-box>
+                <button
+                  (click)="removeFromCart(ques.id)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  Remove !
+                </button>
+                <hr style="border: 1px solid grey;" />
+              </div>
+            </div>
+            <div *ngIf="results.length == 0">
+              <div class="alert alert-info" role="alert">
+                No Questions Available For Medium Level!!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button
+                (click)="onToggleHard()"
+                class="btn btn-link collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseThree"
+              >
+                <h5>
+                  <strong>Section C : Hard Question</strong> &nbsp;&nbsp;
+                  <span><i class="fas fa-chevron-down"></i></span>
+                </h5>
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseThree"
+            class="collapse card-body"
+            [ngClass]="{ show: collapse3 === true }"
+            data-parent="#accordionExample"
+            style="margin-bottom: 5px;"
+          >
+            <div *ngFor="let ques of results; let i = index">
+              <div *ngIf="ques.difficulty === 'hard'">
+                <app-ques-box [ques]="ques"></app-ques-box>
+                <button
+                  (click)="removeFromCart(ques.id)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  Remove !
+                </button>
+                <hr style="border: 1px solid grey;" />
+              </div>
+            </div>
+            <div *ngIf="results.length == 0">
+              <div class="alert alert-info" role="alert">
+                No Questions Available For Hard Level!!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="  margin-top: 2%;">
+<app-submit-modal-form></app-submit-modal-form>
+</div>

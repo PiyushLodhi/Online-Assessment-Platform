@@ -1,0 +1,55 @@
+#test-card {
+    opacity: 0.7;
+    width: 260px;
+    padding: 1px;
+    margin: 4px;
+}
+
+#test-card:hover {
+    opacity: 1;
+}
+
+
+.editor-tag {
+    cursor: text;
+    
+    padding: 10px ;
+    border-radius: 5px;
+    background: white;
+    border: 1px #cccccc solid;
+  
+    & .tag-item {
+      border-radius: 20px;
+      width: fit-content;
+      display: inline-block;
+      background: #444444;;
+      color: white;
+      padding: 5px;
+     margin-bottom: 5px;
+      .remove-tag {
+        padding-right: 5px;
+        cursor: pointer;
+      }
+    }
+  
+  
+  
+    & .tag-item:not(:first-child) {
+      margin-left: 5px;
+    }
+  
+    & input {
+      margin: 0;
+      padding-left: 5px;
+      
+      border-radius: 5px;
+    }
+  }
+  
+  h5{
+    display: flex;
+    
+    padding: 3px;
+    align-items: center;
+  }
+  

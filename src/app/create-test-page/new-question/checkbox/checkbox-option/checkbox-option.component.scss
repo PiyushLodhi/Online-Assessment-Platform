@@ -1,0 +1,21 @@
+
+.checkbox{
+    float: left;
+    padding-right:2% ;
+}
+.editor{
+    float: left;
+    width: 90%;
+
+}
+.closebutton{
+    margin-left: 1%;
+    margin-top: -0.5%;
+    float: left;
+}
+.row div .closebutton{
+    display: none;
+}
+.row div:hover .closebutton{
+    display: block;
+}
